@@ -6,11 +6,11 @@ import java.sql.SQLException;
 
 public class Util {
     // реализуйте настройку соеденения с БД
+    private static Connection connection;
 
-    public Connection getConnection() {
-        Connection connection = null;
+    public static Connection getConnection() {
+
         try {
-
             String url = "jdbc:mysql://localhost:3307/user_db";
             String login = "root";
             String password = "admin";
@@ -20,5 +20,11 @@ public class Util {
             System.out.println("Connect ERROR");
         }
         return connection;
+    }
+
+    public static void closeConnection() throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
     }
 }
